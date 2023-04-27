@@ -12,25 +12,27 @@ digits.forEach(button => {
   })  
 });
 
-let equation = []
-let operator = "";
+let equation = [];
+let operator = [];
 
 operatorinput.forEach(button => {
     button.addEventListener('click', () => {
-      operator = button.value;
+      operator.push(button.value);
       console.log(operator);
       console.log(inputNums.length);
       if (inputNums.length == 0){
         return;
-      } else if (equation.length < 2) {
+      } else if (equation.length < 1) {
         equation.push(Number(inputNums.join("")));
-        equation.push(button.value);
         document.querySelector('#display').textContent = equation[0];
         console.log(equation, equation.length, "if");
         inputNums = [];
-      } else if (equation.length >= 2) {
+      } else if (equation.length >= 1) {
+        operator.push(button.value);
+        console.log(operator)
         equation.push(Number(inputNums.join("")));
-        equation = [evaluate(equation[0], equation.indexOf(`${operator}`), equation[2])]
+        equation = [operate(equation[0], operator[1], equation[1])]
+        operator.unshift();
         console.log(equation, equation.length, "elseif");
         inputNums = [];
         operator = [];
@@ -42,12 +44,12 @@ operatorinput.forEach(button => {
 
 eval.addEventListener('click', () => {
     equation.push(Number(inputNums.join("")));
-    equation = [evaluate(equation[0], operator[1], equation[1])], equation[1];
+    equation = [operate(equation[0], operator[1], equation[1])], equation[1];
     inputNums = [];
 })
 
 
-function evaluate (firstNum, operator, secondNum) {
+function operate (firstNum, operator, secondNum) {
     console.log(firstNum, operator, secondNum)
     switch (operator) {
       case "+":
