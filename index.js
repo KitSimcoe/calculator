@@ -5,46 +5,37 @@ const eval = document.querySelector('.eval');
 let inputNums = []
 console.log(inputNums);
 digits.forEach(button => {
+  // if (operator == "=") {
+  //   clear();
+  // }
   button.addEventListener('click',() => {
-    inputNums.push(Number(button.value));
-    document.querySelector('#display').textContent = inputNums.join("");
-
+  inputNums.push(Number(button.value));
+  document.querySelector('#display').textContent = inputNums.join("");
+  console.log(inputNums)
   })  
 });
 
-let equation = [];
-let operator = [];
+
+let firstNum = "";
+let operator = "";
+let secondNum = "";
+console.log(firstNum, !firstNum);
 
 operatorinput.forEach(button => {
-    button.addEventListener('click', () => {
-      operator.push(button.value);
-      console.log(operator);
-      console.log(inputNums.length);
-      if (inputNums.length == 0){
-        return;
-      } else if (equation.length < 1) {
-        equation.push(Number(inputNums.join("")));
-        document.querySelector('#display').textContent = equation[0];
-        console.log(equation, equation.length, "if");
-        inputNums = [];
-      } else if (equation.length >= 1) {
-        operator.push(button.value);
-        console.log(operator)
-        equation.push(Number(inputNums.join("")));
-        equation = [operate(equation[0], operator[1], equation[1])]
-        operator.unshift();
-        console.log(equation, equation.length, "elseif");
-        inputNums = [];
-        operator = [];
-      } else {
-        console.log("else")
-      }
-    });
+  
+  button.addEventListener('click', () => {
+  if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
+  console.log(firstNum, secondNum);
+  operator = button.value;
+  inputNums = [];
+  if (!firstNum || !secondNum ? console.log("the values are true") : firstNum = operate(firstNum, operator, secondNum));
+  });
 });
 
+
 eval.addEventListener('click', () => {
-    equation.push(Number(inputNums.join("")));
-    equation = [operate(equation[0], operator[1], equation[1])], equation[1];
+    if (!secondNum ? secondNum = (Number(inputNums.join(""))) : console.log("failed"));
+    firstNum = operate(firstNum, operator, secondNum);
     inputNums = [];
 })
 
@@ -65,6 +56,17 @@ function operate (firstNum, operator, secondNum) {
          return document.querySelector('#display').textContent = firstNum * secondNum;
         break;
       default:
-        console.log("error");
+        console.log("this case shouldn't appear");
     }
+}
+
+document.querySelector('.clear').addEventListener('click', () => {
+  clear()
+})
+
+function clear () {
+  inputNums = [];
+  [firstNum, secondNum, operator] = ["", "", ""];
+  
+  document.querySelector('#display').textContent = 0;
 }
