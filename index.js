@@ -2,46 +2,56 @@ const digits = document.querySelectorAll('.digit');
 const operatorinput = document.querySelectorAll('.operator');
 const eval = document.querySelector('.eval');
 
-let inputNums = []
+let [inputNums, operators] = [[], []];
 console.log(inputNums);
+
 digits.forEach(button => {
-  // if (operator == "=") {
+  console.log(operators, "operator");
+  // if (operators.length -1 == "=") {
   //   clear();
-  // }
+  // };
   button.addEventListener('click',() => {
   inputNums.push(Number(button.value));
   document.querySelector('#display').textContent = inputNums.join("");
-  console.log(inputNums)
-  })  
-});
-
-
-let firstNum = "";
-let operator = "";
-let secondNum = "";
-console.log(firstNum, !firstNum);
-
-operatorinput.forEach(button => {
-  
-  button.addEventListener('click', () => {
-  if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
-  console.log(firstNum, secondNum);
-  operator = button.value;
-  inputNums = [];
-  if (!firstNum || !secondNum ? console.log("the values are true") : firstNum = operate(firstNum, operator, secondNum));
+  console.log(inputNums);
   });
 });
 
 
+let [firstNum, secondNum] = ["", ""];
+console.log(firstNum, !firstNum);
+
+operatorinput.forEach(button => {
+  button.addEventListener('click', () => {
+  if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
+  console.log(firstNum, secondNum);
+  operators.push(button.value);
+  console.log(operators)
+  inputNums = [];
+  if (!firstNum || !secondNum) {
+    console.log("the values are true")
+  } else {
+    firstNum = operate(firstNum, operators[0], secondNum);
+    operators.shift();
+    console.log(operators, "these should be the operators");
+  };
+  });
+});
+
+document.querySelector('.clear').addEventListener('click', () => {
+  clear();
+});
+
 eval.addEventListener('click', () => {
     if (!secondNum ? secondNum = (Number(inputNums.join(""))) : console.log("failed"));
-    firstNum = operate(firstNum, operator, secondNum);
+    firstNum = operate(firstNum, operators[operators.length -1], secondNum);
+    console.log(firstNum);
     inputNums = [];
-})
+});
 
 
 function operate (firstNum, operator, secondNum) {
-    console.log(firstNum, operator, secondNum)
+    console.log(firstNum, operator, secondNum);
     switch (operator) {
       case "+":
         return document.querySelector('#display').textContent = firstNum + secondNum;
@@ -60,13 +70,7 @@ function operate (firstNum, operator, secondNum) {
     }
 }
 
-document.querySelector('.clear').addEventListener('click', () => {
-  clear()
-})
-
 function clear () {
-  inputNums = [];
-  [firstNum, secondNum, operator] = ["", "", ""];
-  
+  [firstNum, secondNum, operators, inputNums] = ["", "", [], []];
   document.querySelector('#display').textContent = 0;
 }
