@@ -24,6 +24,7 @@ console.log(firstNum, !firstNum);
 
 operatorinput.forEach(button => {
   button.addEventListener('click', () => {
+  
   if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
   console.log(firstNum, secondNum);
   if (operators.length == 2) {
@@ -32,10 +33,18 @@ operatorinput.forEach(button => {
   } else {
       operators.push(button.value);
   }
-  console.log(operators)
+  if (operators[0] == "sqrt") {
+    firstNum = operate(firstNum, operators[0]);
+    operators.pop()
+  } else if (operators[1] == "sqrt") {
+    secondNum = operate(secondNum, operators[1])
+  } else {
+    console.log("squareRoot is not working correctly");
+  };
+  console.log(operators);
   inputNums = [];
   if (!firstNum || !secondNum) {
-    console.log("the values are true")
+    console.log("the values are true");
   } else {
     firstNum = operate(firstNum, operators[0], secondNum);
     operators.shift();
@@ -49,11 +58,15 @@ document.querySelector('.clear').addEventListener('click', () => {
 });
 
 eval.addEventListener('click', () => {
+  if (!operators[0]) {
+    return;
+  } else {
     if (!secondNum ? secondNum = (Number(inputNums.join(""))) : console.log("failed"));
     firstNum = operate(firstNum, operators[operators.length -1], secondNum);
     console.log(firstNum);
     inputNums = [];
-});
+}});
+
 
 
 function operate (firstNum, operator, secondNum) {
@@ -71,6 +84,9 @@ function operate (firstNum, operator, secondNum) {
       case "*":
          return document.querySelector('#display').textContent = firstNum * secondNum;
         break;
+      case "sqrt":
+        return document.querySelector('#display').textContent = Math.sqrt(firstNum)
+        break;
       default:
         console.log("this case shouldn't appear");
     }
@@ -81,8 +97,9 @@ function clear () {
   document.querySelector('#display').textContent = 0;
 }
 
-const buttons = document.querySelectorAll('button');
 
+
+const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     button.classList.add('clicked');
