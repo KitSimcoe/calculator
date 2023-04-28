@@ -1,62 +1,80 @@
-const digits = document.querySelectorAll('.digit');
-const operatorinput = document.querySelectorAll('.operator');
-const eval = document.querySelector('.eval');
 
+
+let memory = 0;
+
+const digits = document.querySelectorAll('.digit');
 let [inputNums, operators] = [[], []];
-console.log(inputNums);
 
 digits.forEach(button => {
-  console.log(operators, "operator");
   // if (test == true) {
   //   console.log("test")
   //    clear();
   //  };
   button.addEventListener('click',() => {
-  inputNums.push(Number(button.value));
-  document.querySelector('#display').textContent = inputNums.join("");
-  console.log(inputNums);
+    
+    if (inputNums.includes(".") == true && button.value == "." == true){
+      return;
+    } else {
+      inputNums.push(button.value);
+        document.querySelector('#display').textContent = inputNums.join("");
+
+        
+      };
   });
+  console.log(memory);
 });
 
-
-let [firstNum, secondNum] = ["", ""];
-console.log(firstNum, !firstNum);
-
-operatorinput.forEach(button => {
-  button.addEventListener('click', () => {
   
-  if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
-  console.log(firstNum, secondNum);
-  if (operators.length == 2) {
-    operators.pop();
-    operators.push(button.value) ;
-  } else {
+const operatorInput = document.querySelectorAll('.operator');
+let [firstNum, secondNum] = ["", ""];
+
+operatorInput.forEach(button => {
+  button.addEventListener('click', () => {
+    
+    if (operators.length == 2) {
+      operators.pop();
       operators.push(button.value);
-  }
-  if (operators[0] == "sqrt") {
-    firstNum = operate(firstNum, operators[0]);
-    operators.pop()
-  } else if (operators[1] == "sqrt") {
-    secondNum = operate(secondNum, operators[1])
-  } else {
-    console.log("squareRoot is not working correctly");
-  };
-  console.log(operators);
-  inputNums = [];
-  if (!firstNum || !secondNum) {
-    console.log("the values are true");
-  } else {
-    firstNum = operate(firstNum, operators[0], secondNum);
-    operators.shift();
-    console.log(operators, "these should be the operators");
-  };
-  });
+    } else {
+      operators.push(button.value);
+    };
+    console.log(operators);
+    
+    if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
+
+    if(button.className == "operator memory"){ 
+      memoryFunc(button.value);
+      operators = [];
+      console.log(operators);
+    } else {
+      }
+    // if (operators[0] == "sqrt") {
+    //   firstNum = operate(firstNum, operators[0]);
+    //   operators.pop();
+    // } else if (operators[1] == "sqrt") {
+    //   secondNum = operate(secondNum, operators[1])
+    // } else {
+    //   console.log("squareRoot is not working correctly");
+    //   };
+
+
+    console.log(memory);
+    inputNums = [];
+
+    if (!firstNum || !secondNum) {
+      return;
+    } else {
+      firstNum = operate(firstNum, operators[0], secondNum);
+      operators.shift();
+      console.log(operators, "these should be the operators");
+      };
+    });
 });
 
 document.querySelector('.clear').addEventListener('click', () => {
   clear();
 });
 
+const eval = document.querySelector('.eval');
 eval.addEventListener('click', () => {
   if (!operators[0]) {
     return;
@@ -65,7 +83,7 @@ eval.addEventListener('click', () => {
     firstNum = operate(firstNum, operators[operators.length -1], secondNum);
     console.log(firstNum);
     inputNums = [];
-}});
+  }});
 
 
 
@@ -112,3 +130,52 @@ buttons.forEach(button => {
   
   })
 })
+
+
+function memoryFunc (operator) {
+  if (secondNum == "") {
+    switch (operator) {
+      case "M+":
+        memory = memory + firstNum;
+        console.log("M+");
+        break;
+      case "MR":
+        firstNum = document.querySelector('#display').textContent = memory
+        console.log("MR");
+        break;
+      case "MC":
+        memory = 0;
+        console.log("MC");
+        break;
+      case "M-":
+        memory = memory - firstNum;
+        console.log("M-");
+        break;
+      default:
+        console.log("memory didn't work");
+        return;
+    };
+} else {
+    switch (operator) {
+      case "M+":
+        memory = memory + secondNum;
+        console.log("M+");
+        break;
+      case "MR":
+        firstNum = document.querySelector('#display').textContent = memory
+        console.log("MR");
+        break;
+      case "MC":
+        memory = 0;
+        console.log("MC");
+        break;
+      case "M-":
+        memory = memory - firstNum;
+        console.log("M-");
+        break;
+      default:
+        console.log("memory didn't work");
+        return;
+  };
+}
+};
