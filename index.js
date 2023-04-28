@@ -26,7 +26,12 @@ operatorinput.forEach(button => {
   button.addEventListener('click', () => {
   if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
   console.log(firstNum, secondNum);
-  operators.push(button.value);
+  if (operators.length == 2) {
+    operators.pop();
+    operators.push(button.value) ;
+  } else {
+      operators.push(button.value);
+  }
   console.log(operators)
   inputNums = [];
   if (!firstNum || !secondNum) {
