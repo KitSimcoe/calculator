@@ -5,6 +5,8 @@ let memory = 0;
 const digits = document.querySelectorAll('.digit');
 let [inputNums, operators] = [[], []];
 
+
+
 digits.forEach(button => {
   // if (test == true) {
   //   console.log("test")
@@ -24,6 +26,9 @@ digits.forEach(button => {
   console.log(memory);
 });
 
+function getUserInput() {
+  if (!firstNum ? firstNum = Number(inputNums.join("")) : secondNum = Number(inputNums.join("")));
+}
   
 const operatorInput = document.querySelectorAll('.operator');
 let [firstNum, secondNum] = ["", ""];
@@ -37,16 +42,8 @@ operatorInput.forEach(button => {
     } else {
       operators.push(button.value);
     };
-    console.log(operators);
+     getUserInput()
     
-    if (!firstNum ?  firstNum = Number(inputNums.join("")):  secondNum = Number(inputNums.join("")));
-
-    if(button.className == "operator memory"){ 
-      memoryFunc(button.value);
-      operators = [];
-      console.log(operators);
-    } else {
-      }
     // if (operators[0] == "sqrt") {
     //   firstNum = operate(firstNum, operators[0]);
     //   operators.pop();
@@ -131,16 +128,30 @@ buttons.forEach(button => {
   })
 })
 
+const memBtns = document.querySelectorAll('.memory')
+
+memBtns.forEach(button => {
+  button.addEventListener('click', () => {
+      memoryFunc(button.value);
+      operators = [];
+      console.log(operators);
+    
+  });
+});
+
 
 function memoryFunc (operator) {
   if (secondNum == "") {
     switch (operator) {
       case "M+":
+        getUserInput();
+
         memory = memory + firstNum;
         console.log("M+");
         break;
       case "MR":
         firstNum = document.querySelector('#display').textContent = memory
+        secondNum = "";
         console.log("MR");
         break;
       case "MC":
