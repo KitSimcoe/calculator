@@ -11,24 +11,46 @@
 </head>
 <body>
     <div class="container">
-        <div id="display"> 0 </div>
-        <button class="clear" id="clear" type="button" value="C" >C</button>
-        <button class="digit" id="1" type="button" value="1" >1</button>
-        <button class="digit" id="2" type="button" value="2">2</button>
-        <button class="digit" id="3" type="button" value="3">3</button>
-        <button class="digit" id="4" type="button" value="4">4</button>
-        <button class="digit" id="5" type="button" value="5">5</button>
-        <button class="digit" id="6" type="button" value="6">6</button>
-        <button class="digit" id="7" type="button" value="7">7</button>
-        <button class="digit" id="8" type="button" value="8">8</button>
-        <button class="digit" id="9" type="button" value="9">9</button>
-        <button class="digit" id="0" type="button" value="0">0</button>
-        <button class="decimal" id="." type="button" value=".">.</button>
-        <button class="eval" id="=" type="button" value="=">=</button>
-        <button class="operator" id="/" type="button" value="/">&divide</button>
-        <button class="operator" id="*" type="button" value="*">&times</button>
-        <button class="operator" id="-" type="button" value="-">-</button>
-        <button class="operator" id="+" type="button" value="+">+</button>
+    <div id="display"> 0 </div>
+    <div class="containerBtns">
+        <div class="column">
+            <button class="operator button" id="MC" type="button" value="MC">MC</button>
+            <button class="operator" id="minusPlus" type="button" value="&#8723">&#8723</button>
+            <button class="operator" id="%" type="button" value="%">%</button>
+            <button class="operator" id="squareRoot" type="button" value="&#8730">&#8730</button>
+            <button class="clear" id="clear" type="button" value="C" >C</button>
+        </div>
+        <div class="column">
+            <button class="operator" id="MR" type="button" value="MR">MR</button>
+            <button class="digit" id="1" type="button" value="1" >1</button>
+            <button class="digit" id="4" type="button" value="4">4</button>
+            <button class="digit" id="7" type="button" value="7">7</button>
+            <button class="decimal" id="." type="button" value=".">.</button>
+        </div>
+        <div class="column">
+            <button class="operator" id="M-" type="button" value="M-">M-</button>
+            <button class="digit" id="2" type="button" value="2">2</button>
+            <button class="digit" id="5" type="button" value="5">5</button>
+            <button class="digit" id="8" type="button" value="8">8</button>
+            <button class="digit" id="0" type="button" value="0">0</button>
+        </div>
+        <div class="column">
+            <button class="operator" id="M+" type="button" value="M+">M+</button>
+            <button class="digit" id="3" type="button" value="3">3</button>
+            <button class="digit" id="6" type="button" value="6">6</button>
+            <button class="digit" id="9" type="button" value="9">9</button>
+            <button class="eval" id="=" type="button" value="=">=</button>
+        </div>
+        <div class="column">
+            <button class="operator" id="divide" type="button" value="/">&divide</button>
+            <button class="operator" id="multiply" type="button" value="*">&times</button>
+            <button class="operator" id="minus" type="button" value="-">-</button>
+            <button class="operator" id="plus" type="button" value="+">+</button>
+            </div>
+        </div>
+
+
+
     </div>
 </body>
 </html>

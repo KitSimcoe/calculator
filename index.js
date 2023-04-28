@@ -7,9 +7,10 @@ console.log(inputNums);
 
 digits.forEach(button => {
   console.log(operators, "operator");
-  // if (operators.length -1 == "=") {
-  //   clear();
-  // };
+  // if (test == true) {
+  //   console.log("test")
+  //    clear();
+  //  };
   button.addEventListener('click',() => {
   inputNums.push(Number(button.value));
   document.querySelector('#display').textContent = inputNums.join("");
@@ -74,3 +75,18 @@ function clear () {
   [firstNum, secondNum, operators, inputNums] = ["", "", [], []];
   document.querySelector('#display').textContent = 0;
 }
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.classList.add('clicked');
+  
+  })
+})
+buttons.forEach(button => {
+  button.addEventListener('transitionend', () => {
+    button.classList.remove('clicked');
+  
+  })
+})
