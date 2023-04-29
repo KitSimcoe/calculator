@@ -17,10 +17,11 @@ digits.forEach(button => {
     if (inputNums.includes(".") == true && button.value == "." == true){
       return;
     } else {
+      if (inputNums.length <= 15) {
       inputNums.push(button.value);
         document.querySelector('#display').textContent = inputNums.join("");
-
-        
+      } else {
+      }
       };
   });
   console.log(memory);
@@ -67,10 +68,14 @@ operatorInput.forEach(button => {
     });
 });
 
+
+//clear button
 document.querySelector('.clear').addEventListener('click', () => {
   clear();
 });
 
+
+//operates numbers
 const eval = document.querySelector('.eval');
 eval.addEventListener('click', () => {
   if (!operators[0]) {
@@ -83,7 +88,7 @@ eval.addEventListener('click', () => {
   }});
 
 
-
+//operate function
 function operate (firstNum, operator, secondNum) {
     console.log(firstNum, operator, secondNum);
     switch (operator) {
@@ -107,13 +112,14 @@ function operate (firstNum, operator, secondNum) {
     }
 }
 
+//clear function
 function clear () {
   [firstNum, secondNum, operators, inputNums] = ["", "", [], []];
   document.querySelector('#display').textContent = 0;
 }
 
 
-
+//adds class to change style of button when clicked
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -128,6 +134,8 @@ buttons.forEach(button => {
   })
 })
 
+
+//memory buttons
 const memBtns = document.querySelectorAll('.memory')
 
 memBtns.forEach(button => {
@@ -139,7 +147,7 @@ memBtns.forEach(button => {
   });
 });
 
-
+//memory function doesn't work properly yet. 
 function memoryFunc (operator) {
   if (secondNum == "") {
     switch (operator) {

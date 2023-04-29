@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .container {
@@ -13,16 +13,11 @@ body {
     flex-direction: column;
     padding: 4px;
     background-color: black;
+    margin-top: 50px;
 
 }
 
 
-.clicked {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px gold;
-    background-color: rebeccapurple;
-
-}
 .containerBtns {
     display: flex;
     flex: 1 1 100%;
@@ -37,6 +32,7 @@ body {
     flex: 1 1 auto;
     border:solid red 4px;
     border-radius: 4px;
+    overflow-wrap: break-word;
 
 
 }
@@ -60,4 +56,13 @@ button {
 
 .operator {
     background-color: rgb(214, 140, 198);
+}
+
+#clear { background-color: brown;
+}
+.clicked {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px gold;
+        background-color: rebeccapurple;
+    
 }
